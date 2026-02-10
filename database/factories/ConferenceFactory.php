@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Region;
 use App\Models\Venue;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,8 +24,8 @@ class ConferenceFactory extends Factory
             'start_date' => $this->faker->dateTimeBetween('now', '+6 months'),
             'end_date' => $this->faker->dateTimeBetween('+6 months', '+1 year'),
             'status' => $this->faker->randomElement(['draft', 'published', 'cancelled']),
-            'region' => $this->faker->randomElement(['US', 'EU', 'Asia', 'Africa']),
             'venue_id' => Venue::factory(),
+            'region' => $this->faker->randomElement(Region::cases()),
         ];
     }
 }

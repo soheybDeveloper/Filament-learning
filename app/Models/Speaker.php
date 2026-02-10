@@ -19,6 +19,10 @@ class Speaker extends Model
         'twitter_handle',
     ];
 
+    protected $casts = [
+        'qualifications' => 'array',
+    ];
+
     public function conferences(): BelongsToMany
     {
         return $this->belongsToMany(Conference::class);

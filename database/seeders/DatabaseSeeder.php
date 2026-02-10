@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Venue;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        if (User::query()->where('email', 'soheyb@gmail.com')->doesntExist()) {
+            User::factory()->create([
+                'name' => 'Soheyb',
+                'email' => 'soheyb@gmail.com',
+                'password' => bcrypt('1234'),
+            ]);
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (Venue::query()->doesntExist()) {
+            Venue::factory(10)->create();
+
+        }
     }
 }
